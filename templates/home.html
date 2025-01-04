@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Password Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Secure Password Manager</h1>
+            <p>Your trusted solution for securely storing and sharing passwords.</p>
+        </header>
+
+        {# Flash Messages #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <section class="features">
+            <h2>Why Choose Us?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Secure Storage</h3>
+                    <p>All your passwords are encrypted using advanced algorithms to ensure maximum security.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Easy Access</h3>
+                    <p>Access your passwords anytime, anywhere, with just one master password.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>User-Friendly</h3>
+                    <p>Our intuitive interface makes managing your passwords a breeze.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="buttons">
+            <a href="{{ url_for('main.login') }}" class="btn btn-primary">Login</a>
+            <a href="{{ url_for('main.register') }}" class="btn btn-secondary">Sign Up</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 Secure Password Manager. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
