@@ -31,8 +31,7 @@ function Signup() {
       firstname: formData.firstname,
       lastname: formData.lastname,
       vaults:[],
-      folder:[],
-      sharedVaults:[],
+      folders:[],
     };
     if (users.some((user) => user.email === newUser.email)) {
       setMessage("User already exists!");

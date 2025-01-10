@@ -125,4 +125,97 @@ export const getVaultsByUser = async (userId) => {
     }
   }
 
+  // create a share for a vault
+
+  export const createShare = async (userId, vaultId, shareData) => {
+    try {
+      // Fetch the user's data
+      const userResponse = await axios.get(`${API_URL}/users/${userId}`);
+      const user = userResponse.data;
+  
+      // Find the vault to be shared
+      const updatedVaults = user.vaults.map((vault) => {
+        if (vault.id === vaultId) {
+          return {
+            ...vault,
+            shares: [...(vault.shares || []), shareData],
+          };
+        }
+        return vault;
+      });
+  
+      // Update the user's vaults
+      await axios.put(`${API_URL}/users/${userId}`, {
+        ...user,
+        vaults: updatedVaults,
+      });
+
+      return updatedVaults;
+    }
+    catch (error) {
+      console.error("Error creating share:", error);
+      throw error;
+    }
+  }
+
+  // delete a share for a vault
+
+  export const deleteShare = async (userId, vaultId, shareId) => {
+    try {
+      // Fetch the user's data
+      const userResponse = await axios.get(`${API_URL}/users/${userId}`);
+      const user = userResponse.data;
+  
+      // Find the vault to be updated
+      const updatedVaults = user.vaults.map((vault) => {
+        if (vault.id === vaultId) {
+          return {
+            ...vault,
+            shares: vault.shares.filter((share) => share.id !== shareId),
+          };
+        }
+        return vault;
+      });
+  
+      // Update the user's vaults
+      await axios.put(`${API_URL}/users/${userId}`, {
+        ...user,
+        vaults: updatedVaults,
+      });
+  
+      return updatedVaults;
+    } catch (error) {
+      console.error("Error deleting share:", error);
+      throw error;
+    }
+  }
+  
+
+  // create a new folder for a user
+
+  export const createFolder = async (userId, folderData) => {
+    try {
+      // Fetch the user's data
+      const userResponse = await axios.get(`${API_URL}/users/${userId}`);
+      const user = userResponse.data;
+  
+      // Create a new folder
+      const newFolder = {
+        id: Math.random().toString(36).substr(2, 9),
+        ...folderData,
+      };
+  
+      // Update the user's folders
+      const updatedFolders = [...user.folders, newFolder];
+      await axios.put(`${API_URL}/users/${userId}`, {
+        ...user,
+        folders: updatedFolders,
+      });
+  
+      return updatedFolders;
+    } catch (error) {
+      console.error("Error creating folder:", error);
+      throw error;
+    }
+  }
   

@@ -15,7 +15,7 @@
         {
           "id": "1",
           "name": "Facebook",
-          "username": "ismail@gmail.xom",
+          "username": "ismail0@gmail.xom",
           "description": "This is the first vault",
           "password": "password13213",
           "folder_name": "Social Media"
@@ -26,7 +26,15 @@
           "username": "collins@gmail.com",
           "description": "This is the second vault",
           "password": "password 2131",
-          "folder_name": "Social Media"
+          "folder_name": "Social Media",
+          "shares": [
+            {
+              "id": "7nxamhv94",
+              "username": "collins@gmail.com",
+              "password": "password 2131",
+              "expiry": "2025-01-11"
+            }
+          ]
         },
         {
           "id": "3",
@@ -44,6 +52,29 @@
           "username": "ssu10444@omeie.com",
           "password": "123456",
           "confirmPassword": "123456"
+        },
+        {
+          "id": "brt3qz3gs",
+          "folder_name": "Work",
+          "name": "ISMAIL CHIBA",
+          "description": "second facebook",
+          "username": "daffainfo@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": [
+            {
+              "id": "s9amt9upo",
+              "username": "daffainfo@gmail.com",
+              "password": "123456",
+              "expiry": "2025-01-11"
+            },
+            {
+              "id": "oskn0yql1",
+              "username": "daffainfo@gmail.com",
+              "password": "123456",
+              "expiry": "2025-01-11"
+            }
+          ]
         }
       ],
       "folders": [

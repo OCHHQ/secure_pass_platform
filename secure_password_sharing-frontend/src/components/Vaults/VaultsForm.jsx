@@ -1,11 +1,12 @@
 
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import {createVault} from '../api/api';
+import {createVault, createFolder} from '../api/api';
 
 const VaultsForm = ({userID = "", setVaultForm}) => {
 
   const [isLoading, setIsLoading] = useState(false);
+
 
   const [vaultsData, setVaultsData] = useState({
     folder_name: "",
@@ -27,6 +28,14 @@ const VaultsForm = ({userID = "", setVaultForm}) => {
      }
  
      createVault(userID, vaultsData);
+     const folderData = {
+      id: Math.floor(Math.random() * 1000),
+      name: vaultsData.folder_name,
+      description: vaultsData.description,
+      vaultId: [],
+    };
+
+     createFolder(userID, folderData);
       setIsLoading(false);
       setVaultForm(false);
 
