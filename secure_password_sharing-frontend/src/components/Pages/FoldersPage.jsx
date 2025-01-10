@@ -66,7 +66,7 @@ const FoldersPage = () => {
   return (
     <>
     <Header />
-    <div className="flex flex-col items-center justify-center py-16">
+    <div className="flex flex-col items-center justify-center py-16 bg-[#F9F6F3]">
       <VaultsFolders folders= {folders}/>
     </div>
     <Footer />

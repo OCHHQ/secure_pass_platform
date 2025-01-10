@@ -28,7 +28,7 @@ const SharePage = () => {
         <>
             <Header />
             <div id='Share' className='block md:p-20 pt-10 bg-[#F9F6F3]'>
-                <div className='flex flex-col gap-4 w-full h-screen p-8'>
+                <div className='flex flex-col gap-4 w-full h-screen p-4'>
                     <p className='text-3xl text-center font-semibold my-8'>List of shared vaults:</p>
                     <div className='flex flex-col gap-4 rounded-3xl shadow-2xl p-8 bg-[#F9F6F3]'>
                         {isloading ? (

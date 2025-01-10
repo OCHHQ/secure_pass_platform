@@ -6,7 +6,7 @@ const VaultsFolders = ({folders = []}) => {
   return (
     <div>{folders.length > 0 && (
                 <div className='flex flex-col gap-4 justify-center border-2 border-gray-300 rounded-lg p-4'>
-                    <h2 className="text-3xl font-medium text-center">Folders</h2>
+                    <h2 className="text-3xl font-medium text-center my-10">Folders</h2>
                     <div className="flex gap-4 flex-wrap justify-center ">
                         {folders.map((folder) => (
                             <div
