@@ -3,53 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Password Manager</title>
+    <title>Secure Password Sharing Platform</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Block for additional CSS files -->
+    {% block styles %}{% endblock %}
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to Secure Password Manager</h1>
-            <p>Your trusted solution for securely storing and sharing passwords.</p>
-        </header>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top"> <!-- Changed to navbar-light and bg-white -->
+        <div class="container">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
+                <svg class="logo me-2" width="30" height="30" viewBox="0 0 200 200">
+                    <!-- Shield Background -->
+                    <path d="M100 10 L180 50 V110 C180 150 100 190 100 190 C100 190 20 150 20 110 V50 L100 10Z" 
+                          fill="#2C3E50" stroke="#ffffff" stroke-width="4"/>
+                    
+                    <!-- Lock Body -->
+                    <rect x="70" y="80" width="60" height="70" rx="5" 
+                          fill="#3498DB" stroke="#ffffff" stroke-width="2"/>
+                    
+                    <!-- Lock Shackle -->
+                    <path d="M75 80 V60 C75 40 125 40 125 60 V80" 
+                          fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+                    
+                    <!-- Keyhole -->
+                    <circle cx="100" cy="105" r="8" fill="#ffffff"/>
+                    <rect x="97" y="105" width="6" height="25" fill="#ffffff"/>
+                </svg>
+                <span class="brand-text">PassArmor</span>
+            </a>
+            
+            <!-- Navbar Toggler (for mobile) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#security">Security</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link signup-btn" href="{{ url_for('main.register') }}">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        {# Flash Messages #}
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+    <!-- Hero Section -->
+    <section class="hero-section text-center text-white">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Share Passwords Securely</h1>
+            <p class="lead animate__animated animate__fadeInUp">Enterprise-grade encryption for your team's sensitive credentials</p>
+            <div class="mt-4">
+                <a href="{{ url_for('main.register') }}" class="btn btn-primary btn-lg animate__animated animate__fadeInLeft">Get Started</a>
+                <a href="#features" class="btn btn-outline-light btn-lg animate__animated animate__fadeInRight">Learn More</a>
+            </div>
+        </div>
+    </section>
 
-        <section class="features">
-            <h2>Why Choose Us?</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>Secure Storage</h3>
-                    <p>All your passwords are encrypted using advanced algorithms to ensure maximum security.</p>
+    <!-- Features Section -->
+    <section id="features" class="features-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Features</h2>
+            <div class="row">
+                <div class="col-md-4 text-center animate__animated animate__fadeIn">
+                    <div class="feature-icon mb-3">🔒</div>
+                    <h3>End-to-End Encryption</h3>
+                    <p>Your data is encrypted before it leaves your device.</p>
                 </div>
-                <div class="feature-item">
-                    <h3>Easy Access</h3>
-                    <p>Access your passwords anytime, anywhere, with just one master password.</p>
+                <div class="col-md-4 text-center animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="feature-icon mb-3">👥</div>
+                    <h3>Team Sharing</h3>
+                    <p>Share credentials securely with your team.</p>
                 </div>
-                <div class="feature-item">
-                    <h3>User-Friendly</h3>
-                    <p>Our intuitive interface makes managing your passwords a breeze.</p>
+                <div class="col-md-4 text-center animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="feature-icon mb-3">🔑</div>
+                    <h3>Password Generation</h3>
+                    <p>Generate strong, unique passwords instantly.</p>
                 </div>
             </div>
-        </section>
-
-        <div class="buttons">
-            <a href="{{ url_for('main.login') }}" class="btn btn-primary">Login</a>
-            <a href="{{ url_for('main.register') }}" class="btn btn-secondary">Sign Up</a>
         </div>
+    </section>
 
-        <footer>
-            <p>&copy; 2023 Secure Password Manager. All rights reserved.</p>
-        </footer>
-    </div>
+    <!-- Security Section -->
+    <section id="security" class="security-section py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Enterprise-Grade Security</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="security-item mb-4">
+                        <h4>✓ AES-256 Encryption</h4>
+                        <p>Military-grade encryption to protect your data.</p>
+                    </div>
+                    <div class="security-item mb-4">
+                        <h4>✓ Two-Factor Authentication</h4>
+                        <p>Add an extra layer of security to your account.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="security-item mb-4">
+                        <h4>✓ Activity Logging</h4>
+                        <p>Monitor all actions taken on your account.</p>
+                    </div>
+                    <div class="security-item mb-4">
+                        <h4>✓ Regular Security Audits</h4>
+                        <p>Ensure your data is always protected.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Logo -->
+            <a href="{{ url_for('main.home') }}" class="footer-logo">
+                <svg class="logo" width="40" height="40" viewBox="0 0 200 200">
+                    <!-- Shield Background -->
+                    <path d="M100 10 L180 50 V110 C180 150 100 190 100 190 C100 190 20 150 20 110 V50 L100 10Z" 
+                          fill="#2C3E50" stroke="#ffffff" stroke-width="4"/>
+                    
+                    <!-- Lock Body -->
+                    <rect x="70" y="80" width="60" height="70" rx="5" 
+                          fill="#3498DB" stroke="#ffffff" stroke-width="2"/>
+                    
+                    <!-- Lock Shackle -->
+                    <path d="M75 80 V60 C75 40 125 40 125 60 V80" 
+                          fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+                    
+                    <!-- Keyhole -->
+                    <circle cx="100" cy="105" r="8" fill="#ffffff"/>
+                    <rect x="97" y="105" width="6" height="25" fill="#ffffff"/>
+                </svg>
+            </a>
+            
+            <!-- Copyright Text -->
+            <p class="footer-text">&copy; 2023 PassArmor. All rights reserved.</p>
+            
+            <!-- Social Media Icons -->
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Block for additional scripts -->
+    {% block scripts %}{% endblock %}
 </body>
 </html>

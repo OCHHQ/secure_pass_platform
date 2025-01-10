@@ -14,9 +14,9 @@ def decrypt_with_scrypt(encrypted_password, master_password):
         if len(parts) != 3:
             raise ValueError("Invalid encrypted password format")
         
-        scrypt_params = parts[0]  # Example: scrypt:32768:8:1
-        salt = parts[1]           # Example: nszsfmWOy4w2Mqtu
-        encrypted_key = parts[2]  # Example: e0b4...
+        scrypt_params = parts[0]  
+        salt = parts[1]           
+        encrypted_key = parts[2]  
 
         print(f"scrypt_params: {scrypt_params}")
         print(f"salt: {salt}")

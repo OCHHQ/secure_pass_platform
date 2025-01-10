@@ -2,3 +2,9 @@ flask
 flask_sqlalchemy
 flask_bcrypt
 cryptography
+pyotp
+flask_login
+flask_migrate
+python-dotenv
+Flask-Limiter
+install zxcvbn-python==4.4.24
