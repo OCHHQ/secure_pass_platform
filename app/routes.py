@@ -430,23 +430,29 @@ def view_password(id):
 @main.route('/delete_password/<int:id>', methods=['POST'])
 @login_required
 def delete_password(id):
-    password = Password.query.get_or_404(id)
-    
-    # Ensure the password belongs to the current user
-    if password.user_id != current_user.id:
-        flash('Access denied. You cannot delete this password.', 'danger')
-        return redirect(url_for('main.dashboard'))
-    
-    # Delete the password entry
     try:
+        # Find the password or return 404
+        password = Password.query.get_or_404(id)
+        
+        # Ensure the password belongs to the current user
+        if password.user_id != current_user.id:
+            flash('Access denied. You cannot delete this password.', 'danger')
+            return redirect(url_for('main.dashboard'))
+        
+        # Delete associated shared passwords
+        SharedPassword.query.filter_by(password_id=id).delete()
+        
+        # Delete the password
         db.session.delete(password)
         db.session.commit()
+        
         flash('Password deleted successfully!', 'success')
+        return redirect(url_for('main.dashboard'))
+    
     except Exception as e:
         flash(f'Error deleting password: {str(e)}', 'danger')
         db.session.rollback()
-    
-    return redirect(url_for('main.dashboard'))
+        return redirect(url_for('main.dashboard'))
 
 @main.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():

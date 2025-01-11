@@ -7,4 +7,5 @@ flask_login
 flask_migrate
 python-dotenv
 Flask-Limiter
-install zxcvbn-python==4.4.24
+zxcvbn-python==4.4.24
+flask_wtf
