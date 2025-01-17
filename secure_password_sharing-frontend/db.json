@@ -18,7 +18,8 @@
           "username": "ismail0@gmail.xom",
           "description": "This is the first vault",
           "password": "password13213",
-          "folder_name": "Social Media"
+          "folder_name": "Social Media",
+          "shares": []
         },
         {
           "id": "2",
@@ -27,14 +28,7 @@
           "description": "This is the second vault",
           "password": "password 2131",
           "folder_name": "Social Media",
-          "shares": [
-            {
-              "id": "7nxamhv94",
-              "username": "collins@gmail.com",
-              "password": "password 2131",
-              "expiry": "2025-01-11"
-            }
-          ]
+          "shares": []
         },
         {
           "id": "3",
@@ -42,7 +36,15 @@
           "username": "collins@hotmail.com",
           "description": "This is the third vault",
           "password": "password 2313",
-          "folder_name": "Work"
+          "folder_name": "Work",
+          "shares": [
+            {
+              "id": "sw3ybulvv",
+              "username": "collins@hotmail.com",
+              "password": "password 2313",
+              "expiry": "2025-01-12"
+            }
+          ]
         },
         {
           "id": "3kruvy0g2",
@@ -51,7 +53,15 @@
           "description": "second facebook",
           "username": "ssu10444@omeie.com",
           "password": "123456",
-          "confirmPassword": "123456"
+          "confirmPassword": "123456",
+          "shares": [
+            {
+              "id": "68qfemrz7",
+              "username": "ssu10444@omeie.com",
+              "password": "123456",
+              "expiry": "2025-01-13"
+            }
+          ]
         },
         {
           "id": "brt3qz3gs",
@@ -61,20 +71,7 @@
           "username": "daffainfo@gmail.com",
           "password": "123456",
           "confirmPassword": "123456",
-          "shares": [
-            {
-              "id": "s9amt9upo",
-              "username": "daffainfo@gmail.com",
-              "password": "123456",
-              "expiry": "2025-01-11"
-            },
-            {
-              "id": "oskn0yql1",
-              "username": "daffainfo@gmail.com",
-              "password": "123456",
-              "expiry": "2025-01-11"
-            }
-          ]
+          "shares": []
         }
       ],
       "folders": [

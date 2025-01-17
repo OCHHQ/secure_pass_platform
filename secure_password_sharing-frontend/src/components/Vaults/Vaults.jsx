@@ -68,7 +68,6 @@ const Vaults = ({ userID = " ", listVaults = [], setVaultForm }) => {
         expiry: expiry,
         
   };
-    console.log(shareData);
     createShare(userID, vault.id, shareData);
     setVaultShare(false);
     setVault(null);

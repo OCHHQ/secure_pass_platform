@@ -41,7 +41,7 @@ const menuItems = [
         list: [
             {
                 label: 'Profile',
-                link: '/profile'
+                link: '/Profile'
             },
             {
                 label: 'Change Password',

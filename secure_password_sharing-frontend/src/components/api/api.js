@@ -29,6 +29,11 @@ export const getUser = async (userId) => {
       return response.data || [];
 };
 
+// Update a user
+export const updateUser = async (userId, updatedUserData) => {
+    await axios.put(`${API_URL}/users/${userId}`, updatedUserData);
+};
+
 
 // Delete a vault by id and the endpoint is users
 export const getVaultsByUser = async (userId) => {
@@ -182,7 +187,6 @@ export const getVaultsByUser = async (userId) => {
         ...user,
         vaults: updatedVaults,
       });
-  
       return updatedVaults;
     } catch (error) {
       console.error("Error deleting share:", error);

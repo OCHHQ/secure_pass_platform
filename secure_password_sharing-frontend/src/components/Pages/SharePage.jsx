@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../Context/UserContext";
 import Header from "../Header/Header";
-import { getVaultsByUser } from "../api/api";
+import { getVaultsByUser,deleteShare } from "../api/api";
 
 const SharePage = () => {
     const {user} = useUser ();
     const {id} = user;
     const [vaults, setVaults] = useState([]);
-
     const [isloading, setIsLoading] = useState(true);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [confirm, setConfirm] = useState(false);
+    const [idvault, setIdVault] = useState(null);
+    const [idshare, setIdShare] = useState(null);
 
     useEffect(() => {
             const fetchVaults = async () => {
@@ -23,6 +26,24 @@ const SharePage = () => {
             };
             fetchVaults();
         }, [id]);
+
+    const handleDeleteClick = (idvault,idshare) => {
+        console.log(idvault,idshare);
+        setIdVault(idvault);
+        setIdShare(idshare);
+        setShowConfirm(true);
+    }
+
+    if (confirm) {
+        deleteShare(id, idvault, idshare).then((updatedVaults) => {
+            setVaults(updatedVaults);
+        }).catch((error) => {
+            console.error("Error updating vaults:", error);
+        });
+        setConfirm(false);
+        setShowConfirm(false);
+    }
+
 
     return (
         <>
@@ -61,6 +82,11 @@ const SharePage = () => {
                                                     <button className='text-white bg-blue-500 hover:bg-blue-700 py-1 px-2 rounded-md'>
                                                         Copy
                                                     </button>
+                                                    <button className='text-white bg-red-500 hover:bg-red-700 py-1 px-2 rounded-md'
+                                                        onClick={() => handleDeleteClick(vault.id ,share.id)}
+                                                    >
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))
@@ -71,6 +97,26 @@ const SharePage = () => {
                     </div>
                 </div>
             </div>
+            {showConfirm && (
+                <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center'>
+                    <div className='bg-white p-8 rounded-xl shadow-2xl'>
+                        <p>Are you sure you want to delete this share?</p>
+                        <button
+                            className='text-white bg-red-500 hover:bg-red-700 py-1 px-2 rounded-md'
+                            onClick={() => setShowConfirm(false)}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className='text-white bg-blue-500 hover:bg-blue-700 py-1 px-2 rounded-md'
+                            onClick={() => setConfirm(true)}
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            )   
+            }
         </>
     );
 };

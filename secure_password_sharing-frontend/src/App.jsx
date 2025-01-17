@@ -6,6 +6,7 @@ import Dashboard from "./components/Pages/AppHome"
 import VaultsPage from "./components/Pages/VaultsPage"
 import VaultsFolders from "./components/Pages/FoldersPage"
 import SharePage from "./components/Pages/SharePage"
+import Profile from "./components/Pages/Profile"
 import { UserProvider } from "./components/Context/UserContext"
 
 
@@ -23,6 +24,7 @@ function App() {
       <Route path="/Vaults" element={<VaultsPage/>} />
       <Route path="/Folders" element={<VaultsFolders/>} />
       <Route path="/Share" element={<SharePage/>} />
+      <Route path="/Profile" element={<Profile/>} />
     </Routes>
     </BrowserRouter>
     </UserProvider>
