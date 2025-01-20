@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import {createVault, createFolder} from '../api/api';
+import {createVault, createFolder, getFolders, updateFolder} from '../api/api';
 
 const VaultsForm = ({userID = "", setVaultForm}) => {
 
@@ -27,15 +27,29 @@ const VaultsForm = ({userID = "", setVaultForm}) => {
        return;
      }
  
-     createVault(userID, vaultsData);
+      const newVault = await createVault(userID, vaultsData);
      const folderData = {
       id: Math.floor(Math.random() * 1000),
       name: vaultsData.folder_name,
       description: vaultsData.description,
-      vaultId: [],
+      vaultId: [newVault.id],
     };
 
-     createFolder(userID, folderData);
+      const existingFolders = await getFolders(userID);
+      const folderToUpdate = existingFolders.find(folder => folder.name === vaultsData.folder_name);
+
+      if (folderToUpdate) {
+        const updatedFolder = {
+          ...folderToUpdate,
+          vaultId: [...folderToUpdate.vaultId, newVault.id],
+        };
+        await updateFolder(userID,folderToUpdate.id , updatedFolder);
+        setIsLoading(false);
+        setVaultForm(false);
+        return;
+      }
+      createFolder(userID, folderData);
+
       setIsLoading(false);
       setVaultForm(false);
 
@@ -45,6 +59,9 @@ const VaultsForm = ({userID = "", setVaultForm}) => {
      const { name, value } = e.target;
      setVaultsData({ ...vaultsData, [name]: value });
    };
+
+  
+
 
   return (
     <div className='fixed top-0 left-0 w-full h-full bg-[#7A4FE7] backdrop-blur-sm bg-opacity-10 z-40'>

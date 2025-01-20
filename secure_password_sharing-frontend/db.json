@@ -15,7 +15,7 @@
         {
           "id": "1",
           "name": "Facebook",
-          "username": "ismail0@gmail.xom",
+          "username": "ismailchiba0@gmail.com",
           "description": "This is the first vault",
           "password": "password13213",
           "folder_name": "Social Media",
@@ -72,6 +72,15 @@
           "password": "123456",
           "confirmPassword": "123456",
           "shares": []
+        },
+        {
+          "id": "v4b4stzg3",
+          "folder_name": "Work",
+          "name": "ISMAIL CHIBA",
+          "description": "linkedin login and password",
+          "username": "ssu10444@omeie.com",
+          "password": "123456",
+          "confirmPassword": "123456"
         }
       ],
       "folders": [
@@ -115,6 +124,34 @@
       ],
       "folder": [],
       "sharedVaults": []
+    },
+    {
+      "id": "71b4",
+      "email": "ismailchiba12@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chiba",
+      "vaults": [
+        {
+          "id": "svo4dck06",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "ismailchiba0@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456"
+        }
+      ],
+      "folders": [
+        {
+          "id": 339,
+          "name": "Work",
+          "description": "linkedin login and password",
+          "vaultId": [
+            "svo4dck06"
+          ]
+        }
+      ]
     }
   ]
 }

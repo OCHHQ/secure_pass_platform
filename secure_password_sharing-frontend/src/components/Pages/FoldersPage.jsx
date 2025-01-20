@@ -1,73 +1,47 @@
 // Desc: FoldersPage component
 //       This component is a placeholder for the FoldersPage component.
+import { useEffect, useState } from "react"
+import { useUser } from "../Context/UserContext"
 import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
 import VaultsFolders from "../Vaults/VaultsFolders"
+import {getFolders} from '../api/api'
 const FoldersPage = () => {
 
-    const folders = [
-        {
-            id: 1,
-            name: "Social Media",
-            description: "This is a social media folder",
-            vaultId: [1, 4, 5]
-        },
-        {
-            id: 2,
-            name: "Work",
-            description: "This is a work folder",
-            vaultId: [1, 2, 3]
-        },
-        {
-            id: 3,
-            name: "Personal",
-            description: "This is a personal folder",
-            vaultId: [1,3, 5, 7]
-        },
-        {
-            id: 4,
-            name: "Social Media2",
-            description: "This is a social media folder",
-            vaultId: 2
-        },
-        {
-            id: 5,
-            name: "Work2",
-            description: "This is a work folder",
-            vaultId: 1
-        },
-        {
-            id: 6,
-            name: "Personal2",
-            description: "This is a personal folder",
-            vaultId: 1
-        },
-        {
-            id: 7,
-            name: "Social Media3",
-            description: "This is a social media folder",
-            vaultId: 1
-        },
-        {
-            id: 8,
-            name: "Work3",
-            description: "This is a work folder",
-            vaultId: 1
-        },
-        {
-            id: 9,
-            name: "Personal3",
-            description: "This is a personal folder",
-            vaultId: 1
-        }
+    const {user} = useUser ();
+    const {id} = user;
 
+    const [folders, setFolders] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    ];
+    useEffect(() => {
+        const fetchFolders = async () => {
+            try {
+                const folders = await getFolders(id);
+                setFolders(folders);
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Error fetching folders:", error);
+                setIsLoading(false);
+            }
+        };
+        fetchFolders();
+    }
+    , [id]);
+
   return (
     <>
     <Header />
-    <div className="flex flex-col items-center justify-center py-16 bg-[#F9F6F3]">
-      <VaultsFolders folders= {folders}/>
+    <div className="block md:p-20 pt-10 bg-[#F9F6F3]">
+    <div className=''>
+                    <h1 className="text-3xl text-center font-semibold my-8">Welcome to your Folders</h1>
+    </div>
+        {isLoading ? (
+            <p>Loading...</p>
+        ) : (
+            <VaultsFolders folders= {folders} setFolders={setFolders}/>
+        )}
+      
     </div>
     <Footer />
     </>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FaKey, FaPlus } from "react-icons/fa";
 import { deleteVaultById, updateVault,createShare } from "../api/api";
 
-const Vaults = ({ userID = " ", listVaults = [], setVaultForm }) => {
+const Vaults = ({ userID = " ", listVaults = [], setVaultForm}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [Vaults, setVaults] = useState(listVaults);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -51,6 +51,7 @@ const Vaults = ({ userID = " ", listVaults = [], setVaultForm }) => {
     setVault(null);
     setVaultEdit(false);
     setVaultShare(false);
+    setShowConfirm(false);
   };
 
   const Share = (vault) => {

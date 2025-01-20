@@ -8,6 +8,7 @@ import VaultsFolders from "./components/Pages/FoldersPage"
 import SharePage from "./components/Pages/SharePage"
 import Profile from "./components/Pages/Profile"
 import { UserProvider } from "./components/Context/UserContext"
+import ErrorPage from "./components/error"
 
 
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/Folders" element={<VaultsFolders/>} />
       <Route path="/Share" element={<SharePage/>} />
       <Route path="/Profile" element={<Profile/>} />
+      <Route path="*" element={<ErrorPage/>} />
     </Routes>
     </BrowserRouter>
     </UserProvider>

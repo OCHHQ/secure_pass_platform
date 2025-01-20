@@ -1,8 +1,56 @@
-# React + Vite
+# Secure Password Sharing Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the Secure Password Sharing platform. It provides a user-friendly interface for securely sharing passwords.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+To install the project, clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/yourusername/secure_password_sharing-frontend.git
+cd secure_password_sharing-frontend
+
+npm install
+```bash
+# Use Node version 20
+nvm use 20
+```
+
+
+## Usage
+
+To start the development server, run:
+
+```bash
+npm run dev 
+```
+To start the JSON server, run:
+
+```bash
+json-server --watch db.json --port 5000
+```
+
+Open your browser and navigate to `http://localhost:3000` to view the application.
+
+## Features
+
+- Secure password sharing
+- User authentication
+- Password encryption
+- Responsive design
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
