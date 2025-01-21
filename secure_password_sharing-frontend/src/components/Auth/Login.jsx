@@ -20,7 +20,6 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form Submitted:", formData);
     if (formData.email === "" || formData.password === "") {
       setMessage("Please fill all the fields");
     } else {

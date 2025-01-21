@@ -40,7 +40,6 @@ function Signup() {
 
     await axios.post("http://localhost:5000/users", newUser);
     setMessage("");
-    console.log("Form Submitted:", formData);
     setShowLogin(true);
   };
   return (

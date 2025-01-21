@@ -28,7 +28,6 @@ const SharePage = () => {
         }, [id]);
 
     const handleDeleteClick = (idvault,idshare) => {
-        console.log(idvault,idshare);
         setIdVault(idvault);
         setIdShare(idshare);
         setShowConfirm(true);

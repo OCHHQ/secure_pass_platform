@@ -133,6 +133,26 @@
           ]
         }
       ]
+    },
+    {
+      "id": "7945",
+      "email": "ismailchipo24@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chipo",
+      "vaults": [
+        {
+          "id": "iryjdab02",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "ismailchipo24@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": []
+        }
+      ],
+      "folders": []
     }
   ]
 }

@@ -145,7 +145,7 @@ const Vaults = ({ userID = " ", listVaults = [], setVaultForm}) => {
           ) : (
             <div className="flex flex-col gap-4 w-full h-screen p-8">
               <p className="text-sm md:text-lg font-medium text-left mt-4 md:w-1/2">
-                When you save something in PassShare, it appears here.
+                When you save something in PassArmor, it appears here.
                 Passwords, You save it, the vault stores it
               </p>
               <button
@@ -159,7 +159,7 @@ const Vaults = ({ userID = " ", listVaults = [], setVaultForm}) => {
                     Add your first password
                   </h2>
                   <p className="hidden md:block text-xs md:text-sm lg:text-lg md:font-semibold">
-                    Every great PassShare experience starts with just one
+                    Every great PassArmor experience starts with just one
                     password. Try it!
                   </p>
                 </span>
