@@ -1,0 +1,158 @@
+{
+  "users": [
+    {
+      "email": "test@example.com",
+      "password": "password123",
+      "id": "5d89"
+    },
+    {
+      "id": "d3bf",
+      "email": "ismailchiba0@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chiba",
+      "vaults": [
+        {
+          "id": "pt947tqhi",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "ssu10444@omeie.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": [
+            {
+              "id": "p1943lvjs",
+              "username": "ssu10444@omeie.com",
+              "password": "123456",
+              "expiry": "2025-01-22"
+            }
+          ]
+        },
+        {
+          "id": "d91iutzb4",
+          "folder_name": "Work",
+          "name": "LinkedIn2",
+          "description": "linkedin login and password",
+          "username": "ismailchiba@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456"
+        }
+      ],
+      "folders": [
+        {
+          "id": 133,
+          "name": "Work",
+          "description": "linkedin login and password",
+          "vaultId": [
+            "pt947tqhi",
+            "d91iutzb4"
+          ]
+        }
+      ],
+      "sharedVaults": []
+    },
+    {
+      "id": "945e",
+      "email": "ismailchiba@xom",
+      "password": "147",
+      "firstname": "salma",
+      "lastname": "chiba",
+      "vaults": [],
+      "folder": [],
+      "sharedVaults": []
+    },
+    {
+      "id": "a34b",
+      "email": "ismailchipo0@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chippo",
+      "vaults": [
+        {
+          "id": "0uon5ii23",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "collins@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456"
+        }
+      ],
+      "folder": [],
+      "sharedVaults": []
+    },
+    {
+      "id": "71b4",
+      "email": "ismailchiba12@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chiba",
+      "vaults": [],
+      "folders": [
+        {
+          "id": 339,
+          "name": "Work",
+          "description": "linkedin login and password",
+          "vaultId": []
+        }
+      ]
+    },
+    {
+      "id": "ea8d",
+      "email": "ismailchipo22@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chipo",
+      "vaults": [
+        {
+          "id": "c1q439n9v",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "ismailchiba22@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": [
+            {
+              "id": "jktzzi7pt",
+              "username": "ismailchiba22@gmail.com",
+              "password": "123456",
+              "expiry": "2025-01-23"
+            }
+          ]
+        }
+      ],
+      "folders": [
+        {
+          "id": 994,
+          "name": "Work",
+          "description": "linkedin login and password",
+          "vaultId": [
+            "c1q439n9v"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7945",
+      "email": "ismailchipo24@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chipo",
+      "vaults": [
+        {
+          "id": "iryjdab02",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "ismailchipo24@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": []
+        }
+      ],
+      "folders": []
+    }
+  ]
+}
