@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, session, abort, send_file, current_app
-from flask_login import login_user, logout_user, login_required, current_user
+# backend/app/routes.py
+from flask import Blueprint, render_template, redirect, url_for, flash, request, session, abort, send_file, current_app, g
 from datetime import datetime, timedelta
+from app.api.v1.auth.utils import token_required
 import secrets
-from sqlalchemy.exc import IntegrityError
-from werkzeug.security import hmac
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 import re
 from functools import wraps
 import pyotp
@@ -13,11 +13,11 @@ import json
 from io import BytesIO
 from cryptography.fernet import Fernet
 from .models import User, Password, SharedPassword, db, PasswordHistory
-from . import bcrypt  # Import bcrypt from the app package
+from . import bcrypt
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from app.forms import AddPasswordForm, SharePasswordForm
-from sqlalchemy.exc import SQLAlchemyError
+
 
 # Create the main blueprint
 main = Blueprint('main', __name__)
@@ -47,21 +47,11 @@ def is_strong_password(password):
         return False, "Password must contain at least one special character"
     return True, "Password is strong"
 
-# CSRF Protection decorator
-def csrf_protected(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if request.method == "POST":
-            token = request.form.get('csrf_token')
-            if not token or not hmac.compare_digest(token, session.get('csrf_token', '')):
-                abort(403)
-        return f(*args, **kwargs)
-    return decorated_function
 
 # Helper function to check password ownership
-def check_password_ownership(password_id):
+def check_password_ownership(password_id, user_id):
     password = Password.query.get_or_404(password_id)
-    if password.user_id != current_user.id:
+    if password.user_id != user_id:
         abort(403)
     return password
 
@@ -81,6 +71,7 @@ def decrypt_passwords_from_import(encrypted_data, key):
     passwords = json.loads(decrypted_data.decode())
     return passwords
 
+
 # Home Route
 @main.route('/')
 @main.route('/home')
@@ -96,12 +87,10 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         
-        # Validate input
         if not username or not email or not password:
             flash('All fields are required.', 'danger')
             return redirect(url_for('main.register'))
         
-        # Check if username or email already exists
         if User.query.filter_by(username=username).first():
             flash('Username already exists.', 'danger')
             return redirect(url_for('main.register'))
@@ -110,10 +99,7 @@ def register():
             flash('Email already exists.', 'danger')
             return redirect(url_for('main.register'))
         
-        # Hash the password using bcrypt
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        
-        # Create new user
         new_user = User(username=username, email=email, password=hashed_password)
         
         try:
@@ -128,44 +114,14 @@ def register():
     
     return render_template('signup.html')
 
-# Login Route
-@main.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        
-        print(f"Email entered: {email}")  # Debug: Print the email entered
-        print(f"Password entered: {password}")  # Debug: Print the password entered
-        
-        user = User.query.filter_by(email=email).first()
-        
-        if user:
-            print(f"User found: {user.username}")  # Debug: Print the username of the found user
-            print(f"Stored password hash: {user.password}")  # Debug: Print the stored password hash
-            
-            # Verify the password using bcrypt
-            if bcrypt.check_password_hash(user.password, password):
-                print("Password matches! Logging in...")  # Debug: Confirm password match
-                login_user(user)
-                flash('Login successful!', 'success')
-                return redirect(url_for('main.dashboard'))
-            else:
-                print("Password does not match.")  # Debug: Confirm password mismatch
-                flash('Login failed. Check your email and password.', 'danger')
-        else:
-            print(f"No user found with email: {email}")  # Debug: Confirm no user found
-            flash('Login failed. Check your email and password.', 'danger')
-    
-    return render_template('login.html')
 
 @main.route('/enable_2fa')
-@login_required
+@token_required
 def enable_2fa():
     secret = pyotp.random_base32()
     totp = pyotp.TOTP(secret)
     provisioning_uri = totp.provisioning_uri(
-        current_user.email,
+        request.user.email,  # Access user from request context
         issuer_name="Secure Password Manager"
     )
     return render_template('enable_2fa.html', 
@@ -173,46 +129,41 @@ def enable_2fa():
                          qr_code=provisioning_uri)
 
 @main.route('/verify_2fa', methods=['POST'])
-@login_required
+@token_required
 def verify_2fa():
-    totp = pyotp.TOTP(current_user.totp_secret)
+    totp = pyotp.TOTP(request.user.totp_secret)  # Access user from request context
     if totp.verify(request.form.get('totp_code')):
         flash('2FA verification successful!', 'success')
         return redirect(url_for('main.dashboard'))
     else:
         flash('Invalid 2FA code.', 'danger')
         return redirect(url_for('main.enable_2fa'))
-    
 
 
 # Dashboard Route
 @main.route('/dashboard')
-@login_required
+@token_required
 def dashboard():
     try:
+        user_id = request.user.id  # Access user from request context
         page = request.args.get('page', 1, type=int)
         per_page = 10
 
-        # Get all required data
-        passwords_query = Password.query.filter_by(user_id=current_user.id)
+        passwords_query = Password.query.filter_by(user_id=user_id)
         paginated_passwords = passwords_query.order_by(Password.last_modified.desc())\
             .paginate(page=page, per_page=per_page)
         
-        # Get statistics
         total_passwords = passwords_query.count()
         weak_passwords = passwords_query.filter_by(strength='weak').count()
         
-        # Get recent activities
-        recent_activities = PasswordHistory.query.filter_by(user_id=current_user.id)\
+        recent_activities = PasswordHistory.query.filter_by(user_id=user_id)\
             .order_by(PasswordHistory.timestamp.desc())\
             .limit(5).all()
 
-        # Get shared passwords
         shared_passwords = SharedPassword.query.join(Password)\
-            .filter(Password.user_id == current_user.id)\
+            .filter(Password.user_id == user_id)\
             .order_by(SharedPassword.expiry_time.desc()).all()
 
-        # Calculate password age warnings
         passwords = paginated_passwords.items
         for password in passwords:
             password.age_warning = False
@@ -232,22 +183,25 @@ def dashboard():
         )
 
     except Exception as e:
-        print(f"Error in dashboard route: {str(e)}")  # Add logging
+        print(f"Error in dashboard route: {str(e)}")
         flash('An error occurred while loading the dashboard.', 'danger')
         return redirect(url_for('main.home'))
 
 # Logout Route
 @main.route('/logout')
-@login_required
+@main.route('/logout')
+@token_required
 def logout():
-    logout_user()
+    # Since we're using token auth, we just need to redirect
+    # The frontend should handle clearing the token
     flash('You have been logged out.', 'success')
     return redirect(url_for('main.home'))
 
 @main.route('/export_passwords')
-@login_required
+@token_required
 def export_passwords():
-    passwords = Password.query.filter_by(user_id=current_user.id).all()
+    user_id = g.user.id
+    passwords = Password.query.filter_by(user_id=user_id).all()
     encrypted_data = encrypt_passwords_for_export(passwords)
     return send_file(
         encrypted_data,
@@ -257,15 +211,16 @@ def export_passwords():
     )
 
 @main.route('/import_passwords', methods=['GET', 'POST'])
-@login_required
+@token_required
 def import_passwords():
+    user_id = g.user.id
     if request.method == 'POST':
         file = request.files['file']
         if file and file.filename.endswith('.enc'):
             passwords = decrypt_passwords_from_import(file.read())
             for password in passwords:
                 new_password = Password(
-                    user_id=current_user.id,
+                    user_id=user_id,
                     site_name=password['site_name'],
                     site_url=password['site_url'],
                     site_password=password['site_password']
@@ -279,13 +234,13 @@ def import_passwords():
     return render_template('import_passwords.html')
 
 # add_password Route
+# add_password Route
 @main.route('/add_password', methods=['GET', 'POST'])
-@login_required
+@token_required  # Change login_required to token_required for consistency
 @limiter.limit("20/hour")
 def add_password():
     form = AddPasswordForm()
     
-    # Add debugging
     if request.method == 'POST':
         print("Form submitted with data:", {
             'site_name': request.form.get('site_name'),
@@ -302,7 +257,7 @@ def add_password():
 
             # Check for duplicate entries
             existing_password = Password.query.filter_by(
-                user_id=current_user.id,
+                user_id=request.user.id,  # Changed from current_user to request.user
                 site_name=site_name
             ).first()
             
@@ -313,12 +268,11 @@ def add_password():
             # Create new password entry
             hashed_password = bcrypt.generate_password_hash(site_password).decode('utf-8')
             
-            # Fixed zxcvbn strength check
-            strength_result = zxcvbn.zxcvbn(site_password)  # Direct call to zxcvbn
+            strength_result = zxcvbn.zxcvbn(site_password)
             strength = 'strong' if strength_result['score'] >= 3 else 'weak'
             
             new_password = Password(
-                user_id=current_user.id,
+                user_id=request.user.id,  # Changed from current_user to request.user
                 site_name=site_name,
                 site_url=site_url,
                 site_password=hashed_password,
@@ -328,7 +282,7 @@ def add_password():
 
             # Create history entry
             history = PasswordHistory(
-                user_id=current_user.id,
+                user_id=request.user.id,  # Changed from current_user to request.user
                 action='create',
                 site_name=site_name,
                 timestamp=datetime.utcnow()
@@ -352,41 +306,36 @@ def add_password():
     
     return render_template('add_password.html', form=form)
 
-
 # Edit Password Route
 @main.route('/edit_password/<int:id>', methods=['GET', 'POST'])
-@login_required
-@csrf_protected
+@token_required
 def edit_password(id):
     try:
-        password = check_password_ownership(id)
+        user_id = request.user.id  # Access user from request context
+        password = check_password_ownership(id, user_id)
         
         if request.method == 'POST':
             site_name = request.form.get('site_name').strip()
             site_url = request.form.get('site_url').strip()
             site_password = request.form.get('site_password')
             
-            # Validation
             if not site_name or not site_password:
                 flash('Site name and password are required.', 'danger')
                 return redirect(url_for('main.edit_password', id=id))
             
-            # Password strength check
             is_strong, message = is_strong_password(site_password)
             if not is_strong:
                 flash(message, 'warning')
                 return redirect(url_for('main.edit_password', id=id))
             
-            # Update password
             password.site_name = site_name
             password.site_url = site_url
             password.site_password = bcrypt.generate_password_hash(site_password).decode('utf-8')
             password.strength = 'strong' if is_strong else 'weak'
             password.last_modified = datetime.utcnow()
             
-            # Record history
             history = PasswordHistory(
-                user_id=current_user.id,
+                user_id=user_id,
                 action='edit',
                 site_name=site_name,
                 timestamp=datetime.utcnow()
@@ -406,14 +355,15 @@ def edit_password(id):
 
 # View Password Route
 @main.route('/view_password/<int:id>')
-@login_required
+@token_required
 def view_password(id):
     try:
-        password = check_password_ownership(id)
+        user_id = g.user.id
+        password = check_password_ownership(id, user_id)
         
         # Record view history
         history = PasswordHistory(
-            user_id=current_user.id,
+            user_id=user_id,
             action='view',
             site_name=password.site_name,
             timestamp=datetime.utcnow()
@@ -426,23 +376,20 @@ def view_password(id):
         flash('An error occurred while viewing the password.', 'danger')
         return redirect(url_for('main.dashboard'))
 
+
 # Delete Password Route
 @main.route('/delete_password/<int:id>', methods=['POST'])
-@login_required
+@token_required
 def delete_password(id):
     try:
-        # Find the password or return 404
+        user_id = g.user.id
         password = Password.query.get_or_404(id)
         
-        # Ensure the password belongs to the current user
-        if password.user_id != current_user.id:
+        if password.user_id != user_id:
             flash('Access denied. You cannot delete this password.', 'danger')
             return redirect(url_for('main.dashboard'))
         
-        # Delete associated shared passwords
         SharedPassword.query.filter_by(password_id=id).delete()
-        
-        # Delete the password
         db.session.delete(password)
         db.session.commit()
         
@@ -454,88 +401,67 @@ def delete_password(id):
         db.session.rollback()
         return redirect(url_for('main.dashboard'))
 
-@main.route('/forgot-password', methods=['GET', 'POST'])
-def forgot_password():
-    # Logic for handling forgot password functionality
-    return render_template('forgot_password.html')
-
 # Share Password Route
 @main.route('/share_password/<int:password_id>', methods=['GET', 'POST'])
-@login_required
+@token_required
 def share_password(password_id):
     form = SharePasswordForm()
     try:
-        # Verify password ownership
-        password = check_password_ownership(password_id)
+        user_id = g.user.id
+        password = check_password_ownership(password_id, user_id)
         if not password:
             flash('Password not found or access denied.', 'danger')
             return redirect(url_for('main.dashboard'))
         
-        # Handle form submission
         if form.validate_on_submit():
             expiry_hours = form.expiry_hours.data
             expiry_time = datetime.utcnow() + timedelta(hours=expiry_hours)
-            token = secrets.token_urlsafe(32)
+            token = generate_token()
             
-            # Check for existing active shares
             active_shares = SharedPassword.query.filter_by(
                 password_id=password.id,
                 is_used=False
             ).filter(SharedPassword.expiry_time > datetime.utcnow()).count()
             
             if active_shares >= 5:
-                flash('Maximum number of active shares reached. Please revoke some existing shares first.', 'warning')
+                flash('Maximum number of active shares reached.', 'warning')
                 return redirect(url_for('main.share_password', password_id=password_id))
             
-            # Create new share record
             shared_password = SharedPassword(
                 token=token,
                 expiry_time=expiry_time,
                 password_id=password.id,
-                user_id=current_user.id,
+                user_id=user_id,
                 is_used=False
             )
             
-            # Record sharing history
             history = PasswordHistory(
-                user_id=current_user.id,
+                user_id=user_id,
                 action='share',
                 site_name=password.site_name,
                 timestamp=datetime.utcnow()
             )
             
-            try:
-                db.session.add(shared_password)
-                db.session.add(history)
-                db.session.commit()
-                
-                # Generate shareable link
-                shareable_link = url_for('main.view_shared_password', 
-                                       token=token, 
-                                       _external=True)
-                
-                flash('Password shared successfully! The link will expire in {} hours.'.format(
-                    expiry_hours), 'success')
-                return render_template('share_password_success.html', 
-                                     shareable_link=shareable_link,
-                                     expiry_hours=expiry_hours)
-                
-            except SQLAlchemyError as e:
-                db.session.rollback()
-                current_app.logger.error(f"Database error while sharing password: {str(e)}")
-                flash('An error occurred while sharing the password. Please try again.', 'danger')
-                return redirect(url_for('main.dashboard'))
+            db.session.add(shared_password)
+            db.session.add(history)
+            db.session.commit()
+            
+            shareable_link = url_for('main.view_shared_password', 
+                                   token=token, 
+                                   _external=True)
+            
+            return render_template('share_password_success.html', 
+                                 shareable_link=shareable_link,
+                                 expiry_hours=expiry_hours)
             
     except Exception as e:
         current_app.logger.error(f"Error in share_password route: {str(e)}")
         flash('An unexpected error occurred. Please try again later.', 'danger')
         return redirect(url_for('main.dashboard'))
     
-    # GET request or form validation failed
     return render_template('share_password.html', 
                          form=form, 
                          password=password)
-
 # View Shared Password Route
 @main.route('/view_shared_password/<token>')
 def view_shared_password(token):

@@ -1,0 +1,276 @@
+2025-01-17 14:17:05,721 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:17:05,724 - flask_migrate - ERROR - Error: Directory migrations already exists and is not empty
+2025-01-17 14:21:16,456 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:25:38,514 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:25:38,533 - flask_migrate - ERROR - Error: Could not determine revision id from filename 50481b1f7d4e_add_vault_model.py. Be sure the 'revision' variable is declared inside the script (please see 'Upgrading from Alembic 0.1 to 0.2' in the documentation).
+2025-01-17 14:25:55,145 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:30:51,287 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:31:12,917 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:37:00,904 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:41:45,429 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:50:04,920 - app - INFO - Flask app initialized successfully.
+2025-01-17 14:52:37,976 - app - INFO - Flask app initialized successfully.
+2025-01-17 15:02:34,649 - app - INFO - Flask app initialized successfully.
+2025-01-17 15:03:44,449 - app - INFO - Flask app initialized successfully.
+2025-01-17 18:24:43,495 - app - INFO - Flask app initialized successfully.
+2025-01-17 18:24:43,526 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-17 18:24:43,526 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-17 18:33:51,619 - app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Python312\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask_cors\extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\COLLINS\secure_pass_platform_new\backend\app\routes.py", line 90, in home
+    return render_template('home.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\jinja2\environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\jinja2\environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\jinja2\environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: home.html
+2025-01-17 18:33:52,173 - werkzeug - INFO - 127.0.0.1 - - [17/Jan/2025 18:33:52] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-01-17 18:46:40,744 - app - INFO - Flask app initialized successfully.
+2025-01-17 18:46:40,775 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-17 18:46:40,775 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-17 19:02:39,777 - werkzeug - INFO - 127.0.0.1 - - [17/Jan/2025 19:02:39] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-17 19:02:39,796 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-17 19:02:39,796 - werkzeug - INFO - 127.0.0.1 - - [17/Jan/2025 19:02:39] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 06:00:42,265 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:00:42] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 06:00:42,338 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-18 06:00:42,383 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:00:42] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 06:05:16,282 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:05:16] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 06:05:16,325 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-18 06:05:16,365 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:05:16] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 06:12:07,415 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:12:07] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 06:12:07,458 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-18 06:12:07,466 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:12:07] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 06:47:45,790 - app - INFO - Flask app initialized successfully.
+2025-01-18 06:47:45,866 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 06:47:45,866 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 06:48:34,601 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:48:34] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 06:48:34,613 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-18 06:48:34,613 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:48:34] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 06:58:07,305 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-18 06:58:07,313 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 06:58:07] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 07:04:29,985 - flask_wtf.csrf - INFO - The CSRF token is missing.
+2025-01-18 07:04:30,052 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:04:30] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 07:04:59,403 - app - INFO - Flask app initialized successfully.
+2025-01-18 07:04:59,448 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 07:04:59,448 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 07:05:18,727 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:05:18] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 409 -
+2025-01-18 07:07:12,281 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:07:12] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 409 -
+2025-01-18 07:08:18,260 - app - WARNING - Token verification failed: Signature verification failed
+2025-01-18 07:08:18,260 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:08:18] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 07:10:30,821 - app - WARNING - Token verification failed: Signature verification failed
+2025-01-18 07:10:30,821 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:10:30] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 07:11:55,428 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:11:55] "[31m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 401 -
+2025-01-18 07:12:19,880 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:12:19] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 07:14:00,560 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:14:00] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:20:13,990 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:20:13] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 07:20:14,461 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:20:14] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 07:20:14,711 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:20:14] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:20:14,714 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:20:14] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:20:14,766 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:20:14] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:20:14,805 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:20:14] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:21:56,530 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:21:56] "[33mOPTIONS /api/v1/vaults/user/6 HTTP/1.1[0m" 404 -
+2025-01-18 07:21:56,546 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:21:56] "[33mOPTIONS /api/v1/vaults/user/6 HTTP/1.1[0m" 404 -
+2025-01-18 07:22:07,159 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:22:07] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:22:07,212 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:22:07] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:22:07,291 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:22:07] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:22:08,263 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:22:08] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 07:22:42,426 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:22:42] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 07:22:42,448 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:22:42] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 409 -
+2025-01-18 07:36:03,165 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:36:03] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 07:36:03,212 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:36:03] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 07:39:26,657 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:39:26] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 07:39:26,689 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 07:39:26] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 08:29:13,167 - app - INFO - Flask app initialized successfully.
+2025-01-18 08:29:13,225 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 08:29:13,226 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 08:30:22,512 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 08:30:22] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 08:30:22,681 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 08:30:22] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 08:50:12,813 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 08:50:12] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 08:50:12,854 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 08:50:12] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 09:08:46,652 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:08:46] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 09:08:46,716 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:08:46] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 09:28:58,944 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:28:58] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 09:28:58,996 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:28:58] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 09:37:37,747 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:37:37] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 09:37:37,785 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:37:37] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 09:48:40,300 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:48:40] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 09:48:40,314 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:48:40] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 09:56:30,431 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:56:30] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 09:56:30,448 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 09:56:30] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 10:14:11,399 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:14:11] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 10:14:12,320 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:14:12] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 10:14:12,492 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:14:12] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:14:12,987 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:14:12] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:14:13,800 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:14:13] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:14:14,811 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:14:14] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:17:55,485 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:17:55] "[33mOPTIONS /api/v1/vaults/user/6 HTTP/1.1[0m" 404 -
+2025-01-18 10:17:55,488 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:17:55] "[33mOPTIONS /api/v1/vaults/user/6 HTTP/1.1[0m" 404 -
+2025-01-18 10:18:04,272 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:18:04] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:18:04,291 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:18:04] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:18:04,351 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:18:04] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:18:04,472 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:18:04] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:25:46,931 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:25:46] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 10:25:46,947 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:25:46] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-01-18 10:31:37,325 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:31:37] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 409 -
+2025-01-18 10:32:24,516 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:32:24] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:32:24,578 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:32:24] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:32:24,664 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:32:24] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:32:34,627 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:32:34] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 10:32:34,649 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:32:34] "[31m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 401 -
+2025-01-18 10:33:35,169 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:33:35] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 10:33:35,560 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:33:35] "[31m[1mPOST /api/v1/auth/login HTTP/1.1[0m" 401 -
+2025-01-18 10:34:17,088 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:34:17] "[35m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 201 -
+2025-01-18 10:35:20,556 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:35:20] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 10:35:20,911 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:35:20] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 10:35:21,024 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:35:21] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:35:21,057 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:35:21] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:35:21,081 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:35:21] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:35:21,278 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 10:35:21] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 10:55:27,710 - app - INFO - Flask app initialized successfully.
+2025-01-18 10:55:27,760 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 10:55:27,760 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 11:16:04,274 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:16:04] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 11:16:04,866 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:16:04] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 11:16:05,136 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:16:05] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:16:05,229 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:16:05] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:16:05,337 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:16:05] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:16:05,596 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:16:05] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:26:59,186 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:26:59] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:26:59,191 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:26:59] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:26:59,219 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:26:59] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:26:59,237 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:26:59] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:28:29,655 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:28:29] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 11:28:29,992 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:28:29] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 11:28:30,089 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:28:30] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:28:30,099 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:28:30] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:28:30,117 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:28:30] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 11:28:30,137 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 11:28:30] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:30:29,257 - app - INFO - Flask app initialized successfully.
+2025-01-18 14:30:29,378 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 14:30:29,385 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 14:31:47,696 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:47] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:47,702 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:47] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:48,018 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:48] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:48,023 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:48] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:51,814 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:51] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 14:31:52,154 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:52] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 14:31:52,321 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:52] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:52,325 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:52] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:52,339 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:52] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:31:52,373 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:31:52] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:32:05,868 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:32:05] "[33mOPTIONS /api/v1/vaults/user/7 HTTP/1.1[0m" 404 -
+2025-01-18 14:32:05,870 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:32:05] "[33mOPTIONS /api/v1/vaults/user/7 HTTP/1.1[0m" 404 -
+2025-01-18 14:32:32,156 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:32:32] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:32:32,227 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:32:32] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:32:32,361 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:32:32] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:32:33,273 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:32:33] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:54:35,977 - app - INFO - Flask app initialized successfully.
+2025-01-18 14:54:36,042 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 14:54:36,042 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 14:54:40,198 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:54:40] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:54:40,201 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:54:40] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:54:49,919 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:54:49] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:01,784 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:01] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:01,787 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:01] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:02,111 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:02] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:02,121 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:02] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:02,443 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:02] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:02,445 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:02] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:02,454 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:02] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:55:02,464 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:55:02] "GET /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 14:57:54,673 - app - INFO - Flask app initialized successfully.
+2025-01-18 14:57:54,707 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 14:57:54,711 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 14:59:43,418 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:59:43] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 14:59:43,779 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 14:59:43] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:00:13,008 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:13] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:00:13,435 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:13] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:00:18,594 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:18] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:00:18,608 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:18] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:00:18,860 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:00:18,862 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:18] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:00:18,922 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:00:18,923 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:18] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:00:42,707 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:42] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-01-18 15:00:43,059 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:00:43] "[35m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 201 -
+2025-01-18 15:01:13,106 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:01:13] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:01:13,110 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:01:13] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:01:13,433 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:01:13,575 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:01:13] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:01:13,604 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:01:13,610 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:01:13] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:01:51,550 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:01:51] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:01:51,883 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:01:51] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:04:12,934 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:04:12] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:04:13,465 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:04:13] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:08:55,443 - app - INFO - Flask app initialized successfully.
+2025-01-18 15:08:55,536 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-01-18 15:08:55,538 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-01-18 15:09:44,249 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:44] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:09:44,317 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:44] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:09:44,464 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:09:44,467 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:44] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:09:44,628 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:09:44,633 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:44] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:09:45,604 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:09:45,605 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:45] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:09:45,914 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:09:45,916 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:45] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:09:46,356 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:09:46,356 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:46] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:09:46,665 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:09:46,665 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:09:46] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:10:47,237 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:10:47] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:10:47,662 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:10:47] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:20:11,238 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:20:11] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:20:11,690 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:20:11] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:29:11,511 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:29:11] "OPTIONS /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:29:11,956 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:29:11] "POST /api/v1/auth/login HTTP/1.1" 200 -
+2025-01-18 15:35:13,724 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:35:13] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:35:13,732 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:35:13] "OPTIONS /api/v1/auth/me HTTP/1.1" 200 -
+2025-01-18 15:35:13,987 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:35:13,988 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:35:13] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -
+2025-01-18 15:35:14,051 - app - WARNING - Token verification failed: Not enough segments
+2025-01-18 15:35:14,052 - werkzeug - INFO - 127.0.0.1 - - [18/Jan/2025 15:35:14] "[31m[1mGET /api/v1/auth/me HTTP/1.1[0m" 401 -

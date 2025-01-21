@@ -1,12 +1,12 @@
-from . import db, login_manager
 from flask_login import UserMixin
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from enum import Enum
-import zxcvbn
+import zxcvbn  # Ensure zxcvbn is installed
 import secrets
-import os
 from base64 import urlsafe_b64encode
+
+# Import db and login_manager from extensions.py
+from app.extensions import db, login_manager
 
 class User(UserMixin, db.Model):
     """User model for authentication and password management."""
@@ -96,7 +96,7 @@ class SharedPassword(db.Model):
             not self.is_used and
             self.password_id is not None
         )
-    
+
 class PasswordHistory(db.Model):
     """Model for tracking password-related actions."""
     id = db.Column(db.Integer, primary_key=True)
@@ -105,6 +105,58 @@ class PasswordHistory(db.Model):
     site_name = db.Column(db.String(150), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     ip_address = db.Column(db.String(45), nullable=True)  # Store IP for audit
+
+class Vault(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    master_password = db.Column(db.String(200), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False, index=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    last_modified = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    description = db.Column(db.String(200), nullable=True)  # New column
+    is_encrypted = db.Column(db.Boolean, default=False)  # Add another new column
+
+    # Relationships
+    user = db.relationship('User', backref=db.backref('vaults', lazy=True, cascade='all, delete-orphan'))
+
+    @classmethod
+    def create(cls, name, master_password, user_id):
+        """
+        Create a new vault.
+        """
+        vault = cls(name=name, master_password=master_password, user_id=user_id)
+        db.session.add(vault)
+        db.session.commit()
+        return vault
+
+    @classmethod
+    def update(cls, vault_id, data):
+        """
+        Update an existing vault.
+        """
+        vault = cls.query.get(vault_id)
+        if not vault:
+            raise ValueError("Vault not found")
+
+        if 'name' in data:
+            vault.name = data['name']
+        if 'master_password' in data:
+            vault.master_password = data['master_password']
+
+        db.session.commit()
+        return vault
+
+    @classmethod
+    def delete(cls, vault_id):
+        """
+        Delete a vault.
+        """
+        vault = cls.query.get(vault_id)
+        if not vault:
+            raise ValueError("Vault not found")
+
+        db.session.delete(vault)
+        db.session.commit()
 
 @login_manager.user_loader
 def load_user(user_id):

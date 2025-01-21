@@ -1,3 +1,4 @@
+# Description: This script initializes the database by dropping existing tables and creating new ones. It is used to reset the database to its initial state. This script should be run whenever the database schema is changed.
 from app import create_app, db
 
 def init_database():

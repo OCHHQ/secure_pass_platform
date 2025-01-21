@@ -1,41 +1,56 @@
 from flask import Flask
-from flask_wtf.csrf import CSRFProtect
+from dotenv import load_dotenv
 import os
+import logging
+from app.extensions import db, bcrypt, login_manager, migrate  # Import extensions
+
+# Load environment variables from .env
+load_dotenv()
 
 def create_app():
     app = Flask(__name__)
 
-    # Load configuration from environment variables or a config file
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback-secret-key')  # Use a secure key
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI', 'sqlite:///app.db')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # Load configuration from config.py
+    app.config.from_object('config.Config')
 
-    # Initialize Flask-WTF for CSRF protection
-    csrf = CSRFProtect(app)
-
-    # Initialize extensions
-    from app import db, bcrypt, login_manager  # Import extensions from app/__init__.py
+    # Initialize extensions with the app
     db.init_app(app)
     bcrypt.init_app(app)
-    login_manager.init_app(app)  # Initialize LoginManager with the app
+    login_manager.init_app(app)
+    migrate.init_app(app, db)
 
     # Configure login manager
-    login_manager.login_view = 'main.login'  # Set the login view
+    login_manager.login_view = 'main.login'
     login_manager.login_message_category = 'info'
 
-    # Register blueprints or routes
-    from app.routes import main  # Import the blueprint as 'main'
-    app.register_blueprint(main)  # Register the blueprint as 'main'
+    # Initialize CORS (Cross-Origin Resource Sharing)
+    from flask_cors import CORS
+    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:5173').split(',')
+    CORS(app, resources={r"/api/*": {
+        "origins": CORS_ORIGINS,
+        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }})
 
-    # Create database tables (if they don't exist)
-    with app.app_context():
-        db.create_all()
+    # Register blueprints
+    from app.routes import main  # Main web routes
+    app.register_blueprint(main)
+
+    # Import the API v1 Blueprint
+    from app.api.v1 import bp as api_v1_bp  # Import the blueprint
+
+    # Register the API v1 Blueprint
+    app.register_blueprint(api_v1_bp, url_prefix='/api/v1')
+
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('app.log'),
+            logging.StreamHandler()
+        ]
+    )
+    app.logger.info("Flask app initialized successfully.")
 
     return app
-
-if __name__ == "__main__":
-    # Create the Flask app
-    app = create_app()
-
-    # Run the app
-    app.run(debug=True)
