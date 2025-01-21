@@ -9,6 +9,7 @@ import SharePage from "./components/Pages/SharePage"
 import Profile from "./components/Pages/Profile"
 import { UserProvider } from "./components/Context/UserContext"
 import ErrorPage from "./components/error"
+import PrivateRoute from "./components/PrivateRoute";
 
 
 
@@ -18,15 +19,20 @@ function App() {
     <UserProvider>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home/>} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Signup" element={<Signup/>} />
-      <Route path="/dashboard" element={<Dashboard/>} />
-      <Route path="/Vaults" element={<VaultsPage/>} />
-      <Route path="/Folders" element={<VaultsFolders/>} />
-      <Route path="/Share" element={<SharePage/>} />
-      <Route path="/Profile" element={<Profile/>} />
-      <Route path="*" element={<ErrorPage/>} />
+    <Route path="/" element={<Home />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/404" element={<ErrorPage />} /> {/* 404 error page route */}
+
+            {/* Public route, accessible by anyone */}
+            <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+            <Route path="/Vaults" element={<PrivateRoute element={<VaultsPage />} />} />
+            <Route path="/Folders" element={<PrivateRoute element={<VaultsFolders />} />} />
+            <Route path="/Share" element={<PrivateRoute element={<SharePage />} />} />
+            <Route path="/Profile" element={<PrivateRoute element={<Profile />} />} />
+
+            {/* If no route matches, show 404 */}
+            <Route path="*" element={<ErrorPage />} />
     </Routes>
     </BrowserRouter>
     </UserProvider>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "../Context/UserContext";
 import { FaUserCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function Header() {
   const {user} = useUser();
@@ -14,16 +15,19 @@ function Header() {
 
   return (
     <>
-      <nav
+      <motion.nav
         aria-label="Global"
         className="flex justify-between items-center  w-full md:px-10 px-4 py-2 border-b-4 rounded-lg border-[#7A4FE7] fixed shadow-lg backdrop-blur-3xl bg-[#F9F6F3] z-30"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 100 }}
       >
         <div className="font-bold text-lg text-[#28243D]">
         <Link
             to="/dashboard"
             className="hover:text-white hover:bg-[#7A4FE7] p-2 hover:rounded-lg active:scale-[0.98]"
           >
-            Pass-Share
+            PassArmor
           </Link>
         </div>
         {!isLoggedIn && ( <>
@@ -181,9 +185,14 @@ function Header() {
         </div>
         </>
         )}
-      </nav>
+      </motion.nav>
       {isOpen && isLoggedIn && (
-        <div className="lg:hidden fixed top-0 right-0 mx-auto my-auto backdrop-blur-3xl flex flex-col   border-b-4 rounded-lg border-[#7A4FE7] shadow-lg p-8 z-20">
+        <motion.div 
+          className="lg:hidden fixed top-0 right-0 mx-auto my-auto backdrop-blur-3xl flex flex-col   border-b-4 rounded-lg border-[#7A4FE7] shadow-lg p-8 z-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div
             onClick={handleToggle}
             className="flex flex-col items-center gap-8 font-semibold text-[#28243D] text-center mt-8"
@@ -217,10 +226,15 @@ function Header() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
       {isOpen && !isLoggedIn && (
-        <div className="lg:hidden fixed w-full top-0 right-0 mx-auto my-auto backdrop-blur-3xl flex flex-col   border-b-4 rounded-lg border-[#7A4FE7] shadow-lg p-8 z-20">
+        <motion.div 
+          className="lg:hidden fixed w-full top-0 right-0 mx-auto my-auto backdrop-blur-3xl flex flex-col   border-b-4 rounded-lg border-[#7A4FE7] shadow-lg p-8 z-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div onClick={handleToggle} className="flex flex-col items-center gap-8 font-semibold text-[#28243D] text-center mt-8">
           <a
             href="#Solutions"
@@ -247,7 +261,7 @@ function Header() {
             </button>
           </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </>
   );

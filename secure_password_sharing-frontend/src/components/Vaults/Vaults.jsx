@@ -12,6 +12,7 @@ const Vaults = ({ userID = " ", listVaults = [], setVaultForm}) => {
   const [vaultShare, setVaultShare] = useState(false);
   const [duration, setDuration] = useState(0);
 
+
   const deleteVault = (id) => {
     setVaults(Vaults.filter((vault) => vault.id !== id));
     deleteVaultById(userID, id);

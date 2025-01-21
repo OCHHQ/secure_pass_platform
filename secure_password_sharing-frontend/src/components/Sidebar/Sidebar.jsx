@@ -45,7 +45,7 @@ const menuItems = [
             },
             {
                 label: 'Change Password',
-                link: '/change-password'
+                link: '/Profile'
             },
         ]
     }

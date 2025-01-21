@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import { FaFolderOpen, FaSlideshare } from "react-icons/fa";
 import { IoGameControllerOutline } from "react-icons/io5";
 import { MdManageAccounts } from "react-icons/md";
+import {motion} from 'framer-motion';
 
 
 function Home() {
@@ -11,33 +12,46 @@ function Home() {
       <Header></Header>
       <main className="flex flex-col justify-center mx-auto w-full">
         {/* Welcome */}
-        <section id="Product" className="flex flex-col lg:flex-row md:px-10 lg:px-32 justify-between gap-5 my-14 md:my-20">
-          <div className="flex flex-col gap-4 lg:w-1/2 justify-center lg:bg-transparent  bg-[#F9F6F3] p-8 lg:p-10">
-            <header className="text-left ">
+        <motion.section 
+          id="Product" 
+          className="flex flex-col lg:flex-row md:px-10 lg:px-32 justify-between gap-5 my-14 md:my-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="flex flex-col gap-4 lg:w-1/2 justify-center lg:bg-transparent bg-[#F9F6F3] p-8 lg:p-10"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <header className="text-left">
               <h2 className="text-xl text-pretty font-medium">
-                Welcome To &quot;Pass-Share&quot;
+                Welcome To &quot;PassArmor&quot;
               </h2>
             </header>
-            <div className="flex gap-4 flex-col container mx-auto ">
-              <h1 className="sm:text-2xl md:text-3xl font-medium ">
-                &quot;Pass-Share&quot; is the simplest, safest way to manage
-                and share passwords.{" "}
+            <div className="flex gap-4 flex-col container mx-auto">
+              <h1 className="sm:text-2xl md:text-3xl font-medium">
+                &quot;PassArmor&quot; is the simplest, safest way to manage and share passwords.
               </h1>
-              <p className="sm:text-xl md:text-2xl font-normal ">
-                Never share passwords by text or email again.
-                &quot;Pass-Share&quot; keeps your passwords encrypted so you,
-                your family, and your teammates can live and work securely.
+              <p className="sm:text-xl md:text-2xl font-normal">
+                Never share passwords by text or email again. &quot;PassArmor&quot; keeps your passwords encrypted so you, your family, and your teammates can live and work securely.
               </p>
             </div>
-          </div>
-          <div className="hidden  lg:flex container  lg:w-1/2 justify-center">
+          </motion.div>
+          <motion.div 
+            className="hidden lg:flex container lg:w-1/2 justify-center"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             <img
               src="./src/assets/confused.png"
               alt="issue-design"
               className="mx-auto"
             />
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
         {/* Risks */}
         <section id="Solutions" className="mx-auto  p-8 lg:p-20 border-y-2 border-[#7A4FE7] rounded-2xl">
           <div className="mb-10">
@@ -93,7 +107,7 @@ function Home() {
                 </div>
                 <div className="text-center mb-6">
                     <h2 className="text-2xl lg:text-4xl font-medium">
-                        Go beyond secure sharing with the &quot;Project-name&quot; password manager
+                        Go beyond secure sharing with the &quot;PassArmor&quot; password manager
                     </h2>
                 </div>
                 <div className="container flex flex-col lg:flex-row gap-10">
@@ -114,7 +128,7 @@ function Home() {
                 </div>
                 <div className="text-center mb-6">
                     <h2 className="text-2xl lg:text-4xl font-medium">
-                        &quot;Pass-Share&quot; is the secure way to share with friends and family
+                        &quot;PassArmor&quot; is the secure way to share with friends and family
                     </h2>
                 </div>
                 <div className="container flex flex-col lg:flex-row gap-10">
@@ -130,7 +144,7 @@ function Home() {
                         <IoGameControllerOutline className="md:w-16 md:h-16 w-12 h-12 text-[#7A4FE7]"/>
                         <div className="md:w-3/4 w-4/5"> 
                                 <h3 className="text-xl lg:text-2xl font-medium">Have full control over what and when to share</h3>
-                                <p className="hidden md:text-sm md:block lg:text-base">Share and revoke login credentials at any time from your &quot;Project-Name password vault’s sharing center.</p>
+                                <p className="hidden md:text-sm md:block lg:text-base">Share and revoke login credentials at any time from your &quot;PassArmor password vault’s sharing center.</p>
                             </div>
                         </li>
                         <li className="flex gap-4 items-center ">

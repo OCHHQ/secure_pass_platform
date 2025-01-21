@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { getVaultsByUser } from "../api/api";
 import { useUser } from "../Context/UserContext";
 import Footer from "../Footer/Footer";
@@ -13,22 +13,27 @@ const VaultsPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [listVaults, setListVaults] = useState([]);
 
-    const fetchVaults = useCallback(async () => {
+    const fetchVaults = async () => {
+        setIsLoading(true);  // Set loading to true again while fetching data
         try {
             const vaults = await getVaultsByUser(id);
             setListVaults(vaults);
-            setIsLoading(false);
         } catch (error) {
             console.error("Error fetching vaults:", error);
-            setIsLoading(false);
+        } finally {
+            setIsLoading(false);  // Set loading to false once data is fetched
         }
-    }
-    , [id]);
-    
+    };
 
     useEffect(() => {
+        fetchVaults(); // Initial fetch when the component mounts
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
+
+    const addVaultToList = (newVault) => {
+        setListVaults((prevList) => [...prevList, newVault]); // Add the new vault to the existing list
         fetchVaults();
-    }, [id, fetchVaults]);
+    };
 
     return (
         <>
@@ -40,9 +45,9 @@ const VaultsPage = () => {
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
-                    <Vaults userID={id} listVaults={listVaults} setVaultForm={setVaultForm} />
+                    <Vaults userID={id} listVaults={listVaults} setVaultForm={setVaultForm}/>
                 )}
-                {vaultForm && <VaultsForm userID={id} setVaultForm={setVaultForm} fetchVaults={fetchVaults} />}
+                {vaultForm && <VaultsForm userID={id} setVaultForm={setVaultForm} addVaultToList={addVaultToList}  />}
             </div>
             <Footer />
         </>

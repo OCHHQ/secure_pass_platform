@@ -1,6 +1,6 @@
 # Secure Password Sharing Frontend
 
-This is the frontend for the Secure Password Sharing platform. It provides a user-friendly interface for securely sharing passwords.
+This is the frontend for the Secure Password Sharing platform. It provides a user-friendly interface for securely managing and sharing passwords.
 
 ## Table of Contents
 
@@ -44,8 +44,8 @@ Open your browser and navigate to `http://localhost:3000` to view the applicatio
 
 - Secure password sharing
 - User authentication
-- Password encryption
-- Responsive design
+- Password managing
+- Sharing password
 
 ## Contributing
 

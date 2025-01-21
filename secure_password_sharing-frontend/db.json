@@ -13,84 +13,41 @@
       "lastname": "chiba",
       "vaults": [
         {
-          "id": "1",
-          "name": "Facebook",
-          "username": "ismailchiba0@gmail.com",
-          "description": "This is the first vault",
-          "password": "password13213",
-          "folder_name": "Social Media",
-          "shares": []
-        },
-        {
-          "id": "2",
-          "name": "Instagram",
-          "username": "collins@gmail.com",
-          "description": "This is the second vault",
-          "password": "password 2131",
-          "folder_name": "Social Media",
-          "shares": []
-        },
-        {
-          "id": "3",
-          "name": "Gmail",
-          "username": "collins@hotmail.com",
-          "description": "This is the third vault",
-          "password": "password 2313",
+          "id": "pt947tqhi",
           "folder_name": "Work",
-          "shares": [
-            {
-              "id": "sw3ybulvv",
-              "username": "collins@hotmail.com",
-              "password": "password 2313",
-              "expiry": "2025-01-12"
-            }
-          ]
-        },
-        {
-          "id": "3kruvy0g2",
-          "folder_name": "work",
-          "name": "facebook",
-          "description": "second facebook",
-          "username": "ssu10444@omeie.com",
-          "password": "123456",
-          "confirmPassword": "123456",
-          "shares": [
-            {
-              "id": "68qfemrz7",
-              "username": "ssu10444@omeie.com",
-              "password": "123456",
-              "expiry": "2025-01-13"
-            }
-          ]
-        },
-        {
-          "id": "brt3qz3gs",
-          "folder_name": "Work",
-          "name": "ISMAIL CHIBA",
-          "description": "second facebook",
-          "username": "daffainfo@gmail.com",
-          "password": "123456",
-          "confirmPassword": "123456",
-          "shares": []
-        },
-        {
-          "id": "v4b4stzg3",
-          "folder_name": "Work",
-          "name": "ISMAIL CHIBA",
+          "name": "LinkedIn",
           "description": "linkedin login and password",
           "username": "ssu10444@omeie.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": [
+            {
+              "id": "p1943lvjs",
+              "username": "ssu10444@omeie.com",
+              "password": "123456",
+              "expiry": "2025-01-22"
+            }
+          ]
+        },
+        {
+          "id": "d91iutzb4",
+          "folder_name": "Work",
+          "name": "LinkedIn2",
+          "description": "linkedin login and password",
+          "username": "ismailchiba@gmail.com",
           "password": "123456",
           "confirmPassword": "123456"
         }
       ],
       "folders": [
         {
-          "id": "1",
-          "name": "Social Media"
-        },
-        {
-          "id": "2",
-          "name": "Work"
+          "id": 133,
+          "name": "Work",
+          "description": "linkedin login and password",
+          "vaultId": [
+            "pt947tqhi",
+            "d91iutzb4"
+          ]
         }
       ],
       "sharedVaults": []
@@ -131,25 +88,13 @@
       "password": "123456",
       "firstname": "ismail",
       "lastname": "chiba",
-      "vaults": [
-        {
-          "id": "svo4dck06",
-          "folder_name": "Work",
-          "name": "LinkedIn",
-          "description": "linkedin login and password",
-          "username": "ismailchiba0@gmail.com",
-          "password": "123456",
-          "confirmPassword": "123456"
-        }
-      ],
+      "vaults": [],
       "folders": [
         {
           "id": 339,
           "name": "Work",
           "description": "linkedin login and password",
-          "vaultId": [
-            "svo4dck06"
-          ]
+          "vaultId": []
         }
       ]
     }
