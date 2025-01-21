@@ -1,59 +1,55 @@
-Secure Password Platform
+# Secure Password Platform
 A secure password management platform built with Flask and SQLite. This platform allows users to store, manage, and share passwords securely.
 
-Features
-User Authentication:
+# Features
+## User Authentication:
 
 Register, log in, and manage your account securely.
 
 Password hashing using bcrypt for enhanced security.
 
-Password Management:
+## Password Management:
 
 Add, edit, view, and delete passwords.
 
 Passwords are encrypted before being stored in the database.
 
-Password Sharing:
+## Password Sharing:
 
 Share passwords securely with other users.
 
 Set expiry times and generate unique tokens for shared passwords.
 
-Expiry Tracking:
+## Expiry Tracking:
 
 Automatically track and display the status of shared passwords (Active, Expired, Used).
 
-Password Strength Check:
+## Password Strength Check:
 
 Uses zxcvbn to evaluate password strength and provide feedback.
 
-Rate Limiting:
+## Rate Limiting:
 
 Protects against brute force attacks with rate limiting on sensitive routes.
 
-Screenshots
-Dashboard
-Dashboard
+# Screenshots
+## Dashboard
 The dashboard displays your saved passwords and shared passwords.
 
-Add Password
-Add Password
+## Add Password
 Add a new password with site name, URL, and credentials.
 
-Shared Passwords
-Shared Passwords
+## Shared Passwords
 View and manage shared passwords with expiry and usage status.
 
-Installation
-Prerequisites
+# Installation
+## Prerequisites
 Python 3.8 or higher
 
 Pip (Python package manager)
 
 Steps
 Clone the repository:
-
 
 git clone https://github.com/OCHHQ/secure_pass_platform.git
 
@@ -85,31 +81,31 @@ DATABASE_URL=sqlite:///app.db
 Run the application:
 
 
-flask run
+# flask run
 The app will be available at http://127.0.0.1:5000.
 
-Usage
+# Usage
 Register a new account:
 
 Visit the registration page and create a new account.
 
-Log in:
+# Log in:
 
 Use your credentials to log in to the platform.
 
-Add a password:
+# Add a password:
 
 Navigate to the "Add Password" page and enter the site name, URL, and password.
 
-View and manage passwords:
+## View and manage passwords:
 
 Use the dashboard to view, edit, or delete your saved passwords.
 
-Share a password:
+## Share a password:
 
 Select a password to share, set an expiry time, and generate a unique token.
 
-Track shared passwords:
+## Track shared passwords:
 
 View the status of shared passwords (Active, Expired, Used) on the dashboard.
 
@@ -182,7 +178,7 @@ bcrypt: Password hashing.
 
 zxcvbn: Password strength evaluation.
 
-Contributing
+# Contributing
 Contributions are welcome! Here’s how you can contribute:
 
 Fork the repository.
@@ -195,19 +191,32 @@ Push to the branch (git push origin feature/YourFeatureName).
 
 Open a pull request.
 
-License
+# License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Acknowledgments
+# Acknowledgments
 Flask for providing a lightweight and flexible web framework.
 
 SQLite for a simple and efficient database solution.
 
 zxcvbn for password strength evaluation.
 
-Contact
+# Contact
 For questions or feedback, feel free to reach out:
 
-Email: enosejecollins@gmail.com
+# Contributors
+### Chiba Ismail
+Email: ismailchiba0@gmail.com
+github: ismailchiba
 
-GitHub: ochhq
+### Enoseje Collins
+Email: enosejecollins@gmail.com
+github: OCHHQ
+
+### Onyinyechi Nwaneri
+Email: onyinychinwaneri@gmail.com
+github: onyii-e
+
+### Obah Edwin
+Email: obahedwin@ymail.com
+github: Babaoni147
