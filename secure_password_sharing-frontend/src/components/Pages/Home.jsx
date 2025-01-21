@@ -162,7 +162,7 @@ function Home() {
             <div className="lg:w-1/2 flex flex-col gap-1 md:gap-2 p-4 mx-auto self-center">
             
             <h1 className="lg:text-4xl text-3xl font-semibold">Contact us</h1>
-            <p className="md:text-2xl text-base ">Need assistance or have questions? Our team is ready to provide expert guidance and resources to help you get the most out of &quot;Project Name&quot;</p>
+            <p className="md:text-2xl text-base ">Need assistance or have questions? Our team is ready to provide expert guidance and resources to help you get the most out of &quot;PassArmor&quot;</p>
             </div> 
           <div className="min-h-screen flex flex-col lg:w-1/2 p-4 justify-center ">
             <div className="border-2 border-gray-400 rounded-xl shadow-lg lg:p-8 md:p-6 p-4 w-full lg:max-w-4xl bg-[#F3F4F6]">

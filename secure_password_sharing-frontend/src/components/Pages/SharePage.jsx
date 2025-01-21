@@ -100,15 +100,15 @@ const SharePage = () => {
             {showConfirm && (
                 <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center'>
                     <div className='bg-white p-8 rounded-xl shadow-2xl'>
-                        <p>Are you sure you want to delete this share?</p>
+                        <p className="text-pretty font-semibold mb-4">Are you sure you want to delete this share?</p>
                         <button
-                            className='text-white bg-red-500 hover:bg-red-700 py-1 px-2 rounded-md'
+                            className='w-1/2 text-white bg-red-500 hover:bg-red-700 py-1 px-2 rounded-md'
                             onClick={() => setShowConfirm(false)}
                         >
                             Cancel
                         </button>
                         <button
-                            className='text-white bg-blue-500 hover:bg-blue-700 py-1 px-2 rounded-md'
+                            className='w-1/2 text-white bg-blue-500 hover:bg-blue-700 py-1 px-2 rounded-md'
                             onClick={() => setConfirm(true)}
                         >
                             Confirm

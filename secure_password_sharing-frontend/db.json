@@ -97,6 +97,42 @@
           "vaultId": []
         }
       ]
+    },
+    {
+      "id": "ea8d",
+      "email": "ismailchipo22@gmail.com",
+      "password": "123456",
+      "firstname": "ismail",
+      "lastname": "chipo",
+      "vaults": [
+        {
+          "id": "c1q439n9v",
+          "folder_name": "Work",
+          "name": "LinkedIn",
+          "description": "linkedin login and password",
+          "username": "ismailchiba22@gmail.com",
+          "password": "123456",
+          "confirmPassword": "123456",
+          "shares": [
+            {
+              "id": "jktzzi7pt",
+              "username": "ismailchiba22@gmail.com",
+              "password": "123456",
+              "expiry": "2025-01-23"
+            }
+          ]
+        }
+      ],
+      "folders": [
+        {
+          "id": 994,
+          "name": "Work",
+          "description": "linkedin login and password",
+          "vaultId": [
+            "c1q439n9v"
+          ]
+        }
+      ]
     }
   ]
 }
